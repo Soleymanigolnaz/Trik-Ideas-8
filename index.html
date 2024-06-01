@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+            height: 100vh;
+            background-color: greenyellow;
+            background-image: linear-gradient(225deg, #ff3cac 0%, #784bae 50%, #2b86c2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 1.1rem;
+        }
+
+        i {
+            opacity: 0.5;
+        }
+
+        input {
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #784ba0;
+            height: 30px;
+        }
+
+        form {
+            width: 90%;
+        }
+
+        button {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #784ba0;
+                color: white;
+                animation: shake 0.5s ease-in-out;
+            }
+        }
+
+        .card {
+            padding: 20px;
+            display: none;
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 10px 0 10px rgba(239, 229, 229, 0.3);
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        .switchtext {
+            color: blue;
+            text-decoration: underline;
+            font-size: 1rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .link-login {
+            position: relative;
+            bottom: -80px;
+            font-size: 1rem;
+        }
+
+        .link-singup {
+            position: relative;
+            bottom: -10px;
+            font-size: 1rem;
+
+
+
+        }
+
+        h2,
+        p {
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-transform: capitalize;
+        }
+
+        label {
+            font-family: "Raleway", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: weight;
+            font-style: normal;
+            text-transform: capitalize;
+        }
+
+        @keyframes fadeout {
+            0% {
+                opacity: 1;
+                transform: rotate(5deg) translateX(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(-15deg)translateX(-100%);
+            }
+        }
+
+        @keyframes fadein {
+            0% {
+                opacity: 1;
+                transform: rotate(15deg) translateX(100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: rotate(0) translateX(0);
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(0);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="signup" class="card">
+        <h2><i class="fas fa-user"></i>new account</h2>
+        <form action="">
+            <div class="form-group">
+                <label for="email">email :</label>
+                <input type="text" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">password :</label>
+                <input type="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="password-repeat">password repeat :</label>
+                <input type="password" name="password-repeat">
+            </div>
+            <button type="submit">create</button>
+        </form>
+        <p class="link-singup"> aready had an account?
+            <span class="switchtext" onclick="switchTologin()">sing in!</span>
+        </p>
+    </div>
+    <div id="login" class="card active">
+        <h2><i class="fas fa-key"></i>sing in</h2>
+        <form action="">
+            <div class="form-group">
+                <label for="email"> email : </label>
+                <input type="text" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password"> password : </label>
+                <input type="password" name="password">
+            </div>
+            <button type="submit">sing in</button>
+        </form>
+        <p class="link-login"> don't have account yet?
+            <span class="switchtext" onclick="switchToSignUp()">sing up!</span>
+        </p>
+    </div>
+
+
+    <script>
+        const signup = document.getElementById('signup');
+        const login = document.getElementById('login');
+
+        switchToSignUp = () => {
+            login.style.animationName = 'fadeout';
+            login.style.animationDuration = '1s';
+            setTimeout(() => {
+                login.style.display = 'none';
+                signup.style.animationName = 'fadein';
+                signup.style.animationDuration = '1s';
+                signup.style.display = 'flex';
+            }, 900);
+        }
+
+        switchTologin = () => {
+            signup.style.animationName = 'fadeout'
+            signup.style.animationDuration = '1s';
+            setTimeout(() => {
+                signup.style.display = 'none';
+                login.style.animationName = 'fadein';
+                login.style.animationDuration = '1s';
+                login.style.display = 'flex';
+            }, 900);
+        }
+    </script>
+</body>
+
+</html>
